@@ -31,7 +31,7 @@ gulp.task('build', ['scripts', 'styles']);
 gulp.task('test', ['build', 'karma']);
 
 gulp.task('watch', ['build','karma-watch'], function() {
-  gulp.watch(['src/**/*.{js,html}'], ['build']);
+  gulp.watch(['src/**/*.{js,html,css}'], ['build']);
 });
 
 gulp.task('clean', function(cb) {

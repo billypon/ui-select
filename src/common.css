@@ -18,6 +18,9 @@
 }
 
 /* Select2 theme */
+.select2-input {
+    height: 27px !important;
+}
 
 /* Mark invalid Select2 */
 .ng-dirty.ng-invalid > a.select2-choice {
@@ -129,6 +132,10 @@ body > .ui-select-bootstrap.open {
   padding: 3px 3px 0 3px;
 }
 
+.ui-select-multiple.ui-select-bootstrap > div {
+  position: relative;
+}
+
 .ui-select-multiple.ui-select-bootstrap input.ui-select-search {
   background-color: transparent !important; /* To prevent double background when disabled */
   border: none;
@@ -140,6 +147,7 @@ body > .ui-select-bootstrap.open {
 .ui-select-multiple.ui-select-bootstrap .ui-select-match .close {
   font-size: 1.6em;
   line-height: 0.75;
+  margin-left: 6px;
 }
 
 .ui-select-multiple.ui-select-bootstrap .ui-select-match-item {
