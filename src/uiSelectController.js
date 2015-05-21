@@ -334,8 +334,9 @@ uis.controller('uiSelectCtrl',
   var sizeWatch = null;
   ctrl.sizeSearchInput = function() {
 
-    var input = ctrl.searchInput[0],
-        container = ctrl.searchInput.parent().parent()[0],
+    var theme = $element.attr('theme') || uiSelectConfig.theme,
+        input = ctrl.searchInput[0],
+        container = ctrl.searchInput.parent(),
         calculateContainerWidth = function() {
           // Return the container width only if the search input is visible
           return container.clientWidth * !!input.offsetParent;
@@ -344,13 +345,17 @@ uis.controller('uiSelectCtrl',
           if (containerWidth === 0) {
             return false;
           }
-          var inputWidth = containerWidth - input.offsetLeft - 10;
-          if (inputWidth < 50) inputWidth = containerWidth;
+          var inputWidth = containerWidth - input.offsetLeft;
+          if (theme == 'bootstrap')
+              inputWidth -= 1;
           ctrl.searchInput.css('width', inputWidth+'px');
           return true;
         };
+    if (theme !== 'bootstrap')
+        container = container.parent();
+    container = container[0];
 
-    ctrl.searchInput.css('width', '10px');
+    ctrl.searchInput.css('width', '25px');
     $timeout(function() { //Give tags time to render correctly
       if (sizeWatch === null && !updateIfVisible(calculateContainerWidth())) {
         sizeWatch = $scope.$watch(calculateContainerWidth, function(containerWidth) {
