@@ -168,7 +168,7 @@ uis.directive('uiSelectMultiple', ['uiSelectMinErr','$timeout', function(uiSelec
         if (oldValue && !newValue) $select.sizeSearchInput();
       });
 
-      $select.searchInput.on('keydown', function(e) {
+      var _handleKeyDownEvent = function(e) {
         var key = e.which;
         scope.$apply(function() {
           var processed = false;
@@ -183,6 +183,11 @@ uis.directive('uiSelectMultiple', ['uiSelectMinErr','$timeout', function(uiSelec
             e.stopPropagation();
           }
         });
+      };
+      $select.searchInput.on('keydown', _handleKeyDownEvent);
+      $timeout(function() {
+        element.parent().querySelectorAll(".ui-select-match")
+        .on("keydown", _handleKeyDownEvent);
       });
       function _getCaretPosition(el) {
         if(angular.isNumber(el.selectionStart)) return el.selectionStart;
