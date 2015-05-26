@@ -229,7 +229,10 @@ uis.directive('uiSelectMultiple', ['uiSelectMinErr','$timeout', function(uiSelec
                 return prev;
               }
               // Select last item
-              else return last;
+              else {
+                $selectMultiple.removeChoice(last);
+                return false;
+              }
               break;
             case KEY.DELETE:
               // Remove selected item and select next item
