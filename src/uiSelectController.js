@@ -525,7 +525,7 @@ uis.controller('uiSelectCtrl',
   ctrl.sizeSearchInput = function() {
 
     var input = ctrl.searchInput[0],
-        container = ctrl.$element[0],
+        container = input.offsetParent,
         calculateContainerWidth = function() {
           // Return the container width only if the search input is visible
           return container.clientWidth * !!input.offsetParent;
@@ -535,14 +535,11 @@ uis.controller('uiSelectCtrl',
             return false;
           }
           var inputWidth = containerWidth - input.offsetLeft;
-          if (theme == 'bootstrap')
-              inputWidth -= 1;
           ctrl.searchInput.css('width', inputWidth+'px');
           return true;
         };
-    if (theme != 'bootstrap')
-        container = container.parent();
-    container = container[0];
+    if (!container)
+      return;
 
     ctrl.searchInput.css('width', '25px');
     $timeout(function() { //Give tags time to render correctly
